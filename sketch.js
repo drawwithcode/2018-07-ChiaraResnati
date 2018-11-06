@@ -1,11 +1,20 @@
-function preload(){
-  // put preload code here
-}
+var mic;
 
 function setup() {
-  // put setup code here
+  createCanvas(windowWidth, windowHeight);
+
+  mic = new p5.AudioIn();
+  mic.start();
+
+  capture = createCapture(VIDEO);
+  capture.size(width/4, width/4);
+  capture.hide;
 }
 
 function draw() {
-  // put drawing code here
+  background('black');
+  var vol = mic.getLevel();
+  var myImage = capture.loadPixels();
+  image(myImage, width/2-640, height/2-480, 640*2, 480*2);
+  filter(THRESHOLD, 1-vol*5);
 }
